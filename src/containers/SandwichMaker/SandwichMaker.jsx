@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sandwich from '../../components/Sandwich/Sandwich';
+import BuildControls from '../../components/Sandwich/BuildControls/BuildControls';
 import Hoc from '../../hoc/Hoc';
 
 class SandwichMaker extends Component {
@@ -7,10 +8,10 @@ class SandwichMaker extends Component {
     super(props);
     this.state = {
       ingredients: {
-        salad: 1,
-        bacon: 1,
-        cheese: 2,
-        meat: 2,
+        salad: 0,
+        bacon: 0,
+        cheese: 0,
+        meat: 0,
       },
     };
   }
@@ -18,7 +19,7 @@ class SandwichMaker extends Component {
     return (
       <Hoc>
         <Sandwich ingredients={this.state.ingredients} />
-        <div>Controls</div>
+        <BuildControls />
       </Hoc>
     );
   }

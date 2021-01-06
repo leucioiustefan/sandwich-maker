@@ -5,8 +5,7 @@ import { content } from './layoutClasses';
 const Layout = ({ children }) => {
   return (
     <Hoc>
-      <h1>Hello</h1>
-      <h2>From Layout.jsx</h2>
+      <h2>Layout.jsx</h2>
       <main className={content}>{children}</main>
     </Hoc>
   );
