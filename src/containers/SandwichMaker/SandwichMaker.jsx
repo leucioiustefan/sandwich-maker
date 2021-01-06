@@ -2,23 +2,20 @@ import React, { Component } from 'react';
 import Sandwich from '../../components/Sandwich/Sandwich';
 import BuildControls from '../../components/Sandwich/BuildControls/BuildControls';
 import Hoc from '../../hoc/Hoc';
+import { ingredients, ingredientPrices } from '../../utils';
 
 class SandwichMaker extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      ingredients: {
-        salad: 0,
-        bacon: 0,
-        cheese: 0,
-        meat: 0,
-      },
-    };
+    this.state = ingredients;
   }
+
+  addIngredientHandler = (type) => {};
+
   render() {
     return (
       <Hoc>
-        <Sandwich ingredients={this.state.ingredients} />
+        <Sandwich ingredients={ingredients.content} />
         <BuildControls />
       </Hoc>
     );
