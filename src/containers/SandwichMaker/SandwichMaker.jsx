@@ -21,8 +21,17 @@ class SandwichMaker extends Component {
         meat: 0,
       },
       totalPrice: 4,
+      purchasable: false,
     };
   }
+
+  updatePurchaseState = (ingredients) => {
+    const sum = Object.keys(ingredients)
+      .map((igKey) => ingredients[igKey])
+      .reduce((sum, el) => sum + el, 0);
+
+    this.setState({ purchasable: sum > 0 });
+  };
 
   addIngredientHandler = (type) => {
     const numberOfIngredients = this.state.ingredients[type] + 1;
@@ -32,6 +41,7 @@ class SandwichMaker extends Component {
     const newPrice = this.state.totalPrice + price;
 
     this.setState({ ingredients: updatedIngredients, totalPrice: newPrice });
+    this.updatePurchaseState(updatedIngredients);
   };
 
   removeIngredientHandler = (type) => {
@@ -42,6 +52,7 @@ class SandwichMaker extends Component {
     const newPrice = this.state.totalPrice - price;
 
     this.setState({ ingredients: updatedIngredients, totalPrice: newPrice });
+    this.updatePurchaseState(updatedIngredients);
   };
 
   render() {
@@ -59,6 +70,7 @@ class SandwichMaker extends Component {
           ingredientRemoved={this.removeIngredientHandler}
           disabled={disabledInfo}
           price={this.state.totalPrice}
+          purchasable={this.state.purchasable}
         />
       </Hoc>
     );

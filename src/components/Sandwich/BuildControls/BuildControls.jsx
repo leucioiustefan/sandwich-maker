@@ -1,5 +1,5 @@
 import React from 'react';
-import { buildControls } from './buildCotrolsClasses';
+import { buildControls, orderButton } from './buildCotrolsClasses';
 import BuildControl from './BuildControl/BuildControl';
 
 const controls = [
@@ -14,6 +14,7 @@ const BuildControls = ({
   ingredientRemoved,
   disabled,
   price,
+  purchasable,
 }) => {
   return (
     <div className={buildControls}>
@@ -29,6 +30,9 @@ const BuildControls = ({
           disabled={disabled[ctrl.type]}
         />
       ))}
+      <button className={orderButton} disabled={!purchasable}>
+        Order now!
+      </button>
     </div>
   );
 };
