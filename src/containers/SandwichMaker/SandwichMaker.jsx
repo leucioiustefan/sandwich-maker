@@ -34,11 +34,31 @@ class SandwichMaker extends Component {
     this.setState({ ingredients: updatedIngredients, totalPrice: newPrice });
   };
 
+  removeIngredientHandler = (type) => {
+    const numberOfIngredients = this.state.ingredients[type] - 1;
+    const updatedIngredients = { ...this.state.ingredients };
+    updatedIngredients[type] = numberOfIngredients;
+    const price = ingredientPrices[type];
+    const newPrice = this.state.totalPrice - price;
+
+    this.setState({ ingredients: updatedIngredients, totalPrice: newPrice });
+  };
+
   render() {
+    const disabledInfo = {
+      ...this.state.ingredients,
+    };
+    for (let key in disabledInfo) {
+      disabledInfo[key] = disabledInfo[key] <= 0;
+    }
     return (
       <Hoc>
         <Sandwich ingredients={this.state.ingredients} />
-        <BuildControls ingredientAdded={this.addIngredientHandler} />
+        <BuildControls
+          ingredientAdded={this.addIngredientHandler}
+          ingredientRemoved={this.removeIngredientHandler}
+          disabled={disabledInfo}
+        />
       </Hoc>
     );
   }
