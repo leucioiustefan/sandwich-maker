@@ -20,7 +20,7 @@ class SandwichMaker extends Component {
         cheese: 0,
         meat: 0,
       },
-      totalPrice: 0,
+      totalPrice: 4,
     };
   }
 
@@ -58,6 +58,7 @@ class SandwichMaker extends Component {
           ingredientAdded={this.addIngredientHandler}
           ingredientRemoved={this.removeIngredientHandler}
           disabled={disabledInfo}
+          price={this.state.totalPrice}
         />
       </Hoc>
     );
