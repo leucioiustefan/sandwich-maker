@@ -12,4 +12,5 @@ export const ingredients = {
     cheese: 0,
     meat: 0,
   },
+  totalPrice: 0,
 };
