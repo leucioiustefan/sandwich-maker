@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Sandwich from '../../components/Sandwich/Sandwich';
 import BuildControls from '../../components/Sandwich/BuildControls/BuildControls';
 import Hoc from '../../hoc/Hoc';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Sandwich/OrderSummary/OrderSummary';
 
 const ingredientPrices = {
   salad: 0.5,
@@ -22,6 +24,7 @@ class SandwichMaker extends Component {
       },
       totalPrice: 4,
       purchasable: false,
+      purchasing: false,
     };
   }
 
@@ -55,6 +58,10 @@ class SandwichMaker extends Component {
     this.updatePurchaseState(updatedIngredients);
   };
 
+  purchaseHandler = () => {
+    this.setState({ purchasing: true });
+  };
+
   render() {
     const disabledInfo = {
       ...this.state.ingredients,
@@ -64,6 +71,9 @@ class SandwichMaker extends Component {
     }
     return (
       <Hoc>
+        <Modal show={this.state.purchasing}>
+          <OrderSummary ingredients={this.state.ingredients} />
+        </Modal>
         <Sandwich ingredients={this.state.ingredients} />
         <BuildControls
           ingredientAdded={this.addIngredientHandler}
@@ -71,6 +81,7 @@ class SandwichMaker extends Component {
           disabled={disabledInfo}
           price={this.state.totalPrice}
           purchasable={this.state.purchasable}
+          ordered={this.purchaseHandler}
         />
       </Hoc>
     );
