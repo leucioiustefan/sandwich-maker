@@ -1,11 +1,12 @@
 import React from 'react';
 import Hoc from '../../hoc/Hoc';
 import { content } from './layoutClasses';
+import Toolbar from '../Navigation/Toolbar/Toolbar';
 
 const Layout = ({ children }) => {
   return (
     <Hoc>
-      <h2>Layout.jsx</h2>
+      <Toolbar />
       <main className={content}>{children}</main>
     </Hoc>
   );
